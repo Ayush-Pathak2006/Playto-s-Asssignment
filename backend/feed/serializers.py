@@ -12,16 +12,21 @@ class CommentAuthorSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     author = CommentAuthorSerializer(read_only=True)
     replies = serializers.SerializerMethodField()
+    like_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ["id", "author", "content", "replies"]
+        fields = ["id", "author", "content", "like_count", "replies"]
 
     def get_replies(self, obj):
         return CommentSerializer(
             getattr(obj, "replies_list", []),
             many=True
         ).data
+
+    def get_like_count(self, obj):
+        return Like.objects.filter(comment=obj).count()
+
 
 class PostAuthorSerializer(serializers.ModelSerializer):
     class Meta:

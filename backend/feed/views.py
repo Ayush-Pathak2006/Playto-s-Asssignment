@@ -45,7 +45,8 @@ class PostDetailView(APIView):
 
         comments = Comment.objects.filter(
             post=post
-        ).select_related("author")
+        ).select_related("author").prefetch_related("replies")
+
 
         post.comment_tree = build_comment_tree(comments)
 
