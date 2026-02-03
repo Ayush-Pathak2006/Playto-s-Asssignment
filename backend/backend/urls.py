@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/', include('feed.urls')),
     path('api/likes/', include('likes.urls')),
     path('api/auth/', include('accounts.urls')),
+    path("api/leaderboard/", include("leaderboard.urls")), 
 
 ]
