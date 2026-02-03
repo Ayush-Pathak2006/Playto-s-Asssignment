@@ -3,6 +3,10 @@
 A robust Django-based backend API handling nested comments, karma-based leaderboards, and concurrency-safe interactions.
 
 ---
+### Deployment
+* **Frontend:** [Live Demo (Netlify)](https://red-reddit.netlify.app/)
+
+---
 
 ## 🛠️ Tech Stack
 
