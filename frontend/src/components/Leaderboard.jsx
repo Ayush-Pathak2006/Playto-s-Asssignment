@@ -11,20 +11,39 @@ const Leaderboard = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>Loading leaderboard...</p>;
+  if (loading)
+    return (
+      <div className="text-sm text-gray-500">
+        Loading leaderboard...
+      </div>
+    );
 
   return (
-    <div style={{ borderLeft: "1px solid #ddd", paddingLeft: "16px" }}>
-      <h3>🏆 Leaderboard (Last 24h)</h3>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        🏆 Leaderboard <span className="text-sm text-gray-500">(Last 24h)</span>
+      </h3>
 
-      {users.length === 0 && <p>No activity yet</p>}
+      {users.length === 0 && (
+        <p className="text-sm text-gray-500">No activity yet</p>
+      )}
 
-      {users.map((user, index) => (
-        <div key={user.id} style={{ marginBottom: "8px" }}>
-          <strong>#{index + 1} {user.username}</strong>
-          <span style={{ float: "right" }}>{user.karma} karma</span>
-        </div>
-      ))}
+      <div className="space-y-2">
+        {users.map((user, index) => (
+          <div
+            key={user.id}
+            className="flex justify-between items-center text-sm"
+          >
+            <span className="font-medium">
+              #{index + 1} {user.username}
+            </span>
+
+            <span className="text-blue-600 font-semibold">
+              {user.karma} karma
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -18,29 +18,62 @@ const CreatePost = () => {
 
     try {
       await api.post("posts/", { content });
-      navigate("/"); // go back to feed
+      navigate("/");
     } catch {
       setError("Failed to create post");
     }
   };
 
   return (
-    <div style={{ padding: "24px" }}>
-      <h2>Create Post</h2>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white rounded-lg shadow-md w-full max-w-xl p-6">
+        <h2 className="text-2xl font-semibold mb-4">
+          Create Post
+        </h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p className="text-red-500 text-sm mb-3">
+            {error}
+          </p>
+        )}
 
-      <form onSubmit={handleSubmit}>
-        <textarea
-          rows="4"
-          style={{ width: "100%", marginBottom: "12px" }}
-          placeholder="What's on your mind?"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
+          <textarea
+            rows="4"
+            className="
+              w-full
+              border
+              border-gray-300
+              rounded-md
+              px-3
+              py-2
+              mb-4
+              resize-none
+              focus:outline-none
+              focus:ring-2
+              focus:ring-blue-500
+            "
+            placeholder="What's on your mind?"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
 
-        <button type="submit">Post</button>
-      </form>
+          <button
+            type="submit"
+            className="
+              bg-blue-600
+              text-white
+              px-4
+              py-2
+              rounded-md
+              hover:bg-blue-700
+              transition
+            "
+          >
+            Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
