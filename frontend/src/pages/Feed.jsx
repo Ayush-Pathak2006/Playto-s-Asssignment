@@ -1,34 +1,37 @@
 import { useEffect, useState } from "react";
-import { fetchPosts } from "../api/feed.api";
-import Post from "../components/Post";
+import api from "../api/axios";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const loadFeed = async () => {
-      try {
-        const data = await fetchPosts();
-        setPosts(data);
-      } catch (err) {
-        console.error("Failed to fetch posts", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadFeed();
+    api
+      .get("posts/")
+      .then((res) => setPosts(res.data))
+      .catch(() => setError("Failed to load posts"));
   }, []);
 
-  if (loading) return <p>Loading feed...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h1>Community Feed</h1>
+    <div style={{ padding: "24px" }}>
+      <h2>Feed</h2>
+
+      {posts.length === 0 && <p>No posts yet</p>}
 
       {posts.map((post) => (
-        <Post key={post.id} post={post} />
+        <div
+          key={post.id}
+          style={{
+            border: "1px solid #ccc",
+            padding: "12px",
+            marginBottom: "12px",
+          }}
+        >
+          <p>{post.content}</p>
+          <small>Author ID: {post.author}</small>
+        </div>
       ))}
     </div>
   );
