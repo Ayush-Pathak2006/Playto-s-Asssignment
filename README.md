@@ -4,7 +4,7 @@ A robust Django-based backend API handling nested comments, karma-based leaderbo
 
 ---
 ### Deployment
-* **Frontend:** [Live Demo (Netlify)](https://red-reddit.netlify.app/)
+* **Red-Reddit:** [Live Demo (Netlify)](https://red-reddit.netlify.app/)
 
 ---
 
