@@ -11,11 +11,14 @@ const Navbar = () => {
       <div>
         {!user ? (
           <>
-            <Link to="/login">Login</Link>{" "}
-            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link> <Link to="/register">Register</Link>
           </>
         ) : (
           <>
+            <Link to="/create" style={{ marginRight: "10px" }}>
+              Create Post
+            </Link>
+
             <span style={{ marginRight: "10px" }}>Hi 👋</span>
             <button onClick={logout}>Logout</button>
           </>

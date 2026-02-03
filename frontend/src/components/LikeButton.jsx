@@ -1,30 +1,19 @@
 import { useState } from "react";
 
-const LikeButton = ({ onLike, initialCount = 0 }) => {
-  const [count, setCount] = useState(initialCount);
-  const [loading, setLoading] = useState(false);
-
-  const handleClick = async () => {
-    if (loading) return;
-
-    setLoading(true);
-
-    // 🔥 optimistic update
-    setCount((prev) => prev + 1);
-
-    try {
-      await onLike();
-    } catch (err) {
-      // rollback if something went wrong
-      setCount((prev) => prev - 1);
-      console.error("Like failed", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+const LikeButton = ({ onLike, count, liked }) => {
   return (
-    <button onClick={handleClick} disabled={loading}>
+    <button
+      onClick={onLike}
+      style={{
+        marginTop: "8px",
+        padding: "6px 12px",
+        borderRadius: "6px",
+        border: "1px solid #ccc",
+        cursor: "pointer",
+        backgroundColor: liked ? "#2563eb" : "#f3f4f6",
+        color: liked ? "white" : "black",
+      }}
+    >
       👍 {count}
     </button>
   );

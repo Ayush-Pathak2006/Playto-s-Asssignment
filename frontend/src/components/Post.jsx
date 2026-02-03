@@ -1,25 +1,20 @@
-import Comment from "./Comment";
-import LikeButton from "./LikeButton";
-import { likePost } from "../api/likes.api";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post }) => {
-  const handleLike = () => likePost(post.id);
+  const navigate = useNavigate();
 
   return (
-    <div style={{ border: "1px solid #ccc", marginBottom: "16px", padding: "12px" }}>
+    <div
+      onClick={() => navigate(`/posts/${post.id}`)}
+      style={{
+        border: "1px solid #ccc",
+        padding: "12px",
+        marginBottom: "16px",
+        cursor: "pointer"
+      }}
+    >
       <h3>{post.author.username}</h3>
       <p>{post.content}</p>
-
-      <LikeButton
-        onLike={handleLike}
-        initialCount={post.like_count || 0}
-      />
-
-      <div style={{ marginLeft: "20px" }}>
-        {post.comments?.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
-      </div>
     </div>
   );
 };

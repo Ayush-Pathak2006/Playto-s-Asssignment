@@ -5,6 +5,8 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Feed from "./pages/Feed";
 import RequireAuth from "./auth/RequireAuth";
+import CreatePost from "./pages/CreatePost";
+import PostDetail from "./pages/PostDetail";  
 
 const App = () => {
   return (
@@ -14,12 +16,21 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path="/posts/:id" element={<PostDetail />} />
           <Route
             path="/"
             element={
               <RequireAuth>
                 <Feed />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path="/create"
+            element={
+              <RequireAuth>
+                <CreatePost />
               </RequireAuth>
             }
           />

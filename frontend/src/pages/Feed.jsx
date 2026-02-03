@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import Post from "../components/Post";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -21,17 +22,7 @@ const Feed = () => {
       {posts.length === 0 && <p>No posts yet</p>}
 
       {posts.map((post) => (
-        <div
-          key={post.id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "12px",
-            marginBottom: "12px",
-          }}
-        >
-          <p>{post.content}</p>
-          <small>Author ID: {post.author}</small>
-        </div>
+        <Post key={post.id} post={post} />
       ))}
     </div>
   );
