@@ -66,7 +66,7 @@ The API will be available at: `http://127.0.0.1:8000/`
 
 ## 📚 Documentation
 
-* **Technical Explainer:** Read [EXPLAINER.md](EXPLAINER.md) for a deep dive into the engineering decisions (Nested Comments, N+1 Optimization, Concurrency).
+* **Technical Explainer:** Read [EXPLAINER.md](Explainer.md) for a deep dive into the engineering decisions (Nested Comments, N+1 Optimization, Concurrency).
 
 ---
 
